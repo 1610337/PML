@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8c0a9b0d-fa8e-46ba-b9de-deee5c679931" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/KNN/KNN_Basic.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KNN/knn.py" beforeDir="false" afterPath="$PROJECT_DIR$/KNN/KNN_Advanced.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -13,10 +13,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="knn.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/KNN/knn.py">
+      <file leaf-file-name="KNN_Advanced.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/KNN/KNN_Advanced.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
+            <state relative-caret-position="459">
+              <caret line="27" column="34" selection-start-line="27" selection-start-column="34" selection-end-line="27" selection-end-column="34" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -24,7 +25,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="KNN_Basic.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="KNN_Basic.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/KNN/KNN_Basic.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="204">
@@ -142,19 +143,20 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/KNN/knn.py">
+    <entry file="file://$PROJECT_DIR$/KNN/KNN_Basic.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
+        <state relative-caret-position="204">
+          <caret line="13" column="18" lean-forward="true" selection-start-line="13" selection-start-column="18" selection-end-line="13" selection-end-column="18" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/KNN/KNN_Basic.py">
+    <entry file="file://$PROJECT_DIR$/KNN/KNN_Advanced.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="13" column="18" lean-forward="true" selection-start-line="13" selection-start-column="18" selection-end-line="13" selection-end-column="18" />
+        <state relative-caret-position="459">
+          <caret line="27" column="34" selection-start-line="27" selection-start-column="34" selection-end-line="27" selection-end-column="34" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
