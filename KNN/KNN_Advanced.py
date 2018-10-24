@@ -3,9 +3,17 @@ import random
 import math
 import operator
 import numpy as np
+import pandas as pd
+
+import sys
 
 
 def testMain():
+    d = pd.Series([1,2,3,4],['a', 'b', 'c', 'd'])
+    print(d)
+
+    df = pd.DataFrame(2, ['a', 'b'], ['a1', 'b1'])
+    print(df)
     pass
 
 def main() :
@@ -14,8 +22,9 @@ def main() :
     # TODO Change output to pandas DF
 
     mainDataFrame = []
-    for k in range(3,10):
+    for k in range(3, 10):
         tempListForKResults = []
+        tempSeries = pd.Series()
         for split in np.arange(0.1, 0.99, 0.01):
             # print(round(split,2))
             # now we´re executing the following code for each k - split combination
@@ -24,7 +33,7 @@ def main() :
             # prepare data
             trainingSet = []
             testSet = []
-            split = round(split,2)
+            split = round(split, 2)
             loadDataset('iris.csv', split, trainingSet, testSet)
             print('Train set: ' + repr(len(trainingSet)))
             print('Test set: ' + repr(len(testSet)))
@@ -40,9 +49,13 @@ def main() :
             print('Accuracy: ' + repr(accuracy) + '%' + ' K value -->' + str(k) + ' Split Value -->' + str(round(split,2)))
 
             tempListForKResults.append(repr(accuracy))
+            #tempSeries += pd.Series([repr(accuracy)])
+            tempSeries = tempSeries.append(pd.Series([repr(accuracy)], [round(split,2)]))
 
+        print(tempSeries)
+        # print(tempListForKResults)
         mainDataFrame.append(tempListForKResults)
-
+        # sys.exit(0)
     printOutMainDF(mainDataFrame)
 
 def printOutMainDF(df):
@@ -145,3 +158,4 @@ def getAccuracy(testSet, predictions):
 
 
 main()
+testMain()
