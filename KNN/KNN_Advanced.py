@@ -5,26 +5,13 @@ import operator
 import numpy as np
 import pandas as pd
 
-import sys
 
-
-def testMain():
-    d = pd.Series([1,2,3,4],['a', 'b', 'c', 'd'])
-    print(d)
-
-    df = pd.DataFrame(2, ['a', 'b'], ['a1', 'b1'])
-    print(df)
-    pass
-
-def main() :
+def main():
     print("Implementation of the KNN Algorithm für the IRIS-Dataset")
     # TODO check for results ... there are values with 100% accuracy
-    # TODO Change output to pandas DF
 
-    mainDataFrame = []
     mainDF = pd.DataFrame()
     for k in range(3, 10):
-        tempListForKResults = []
         tempSeries = pd.Series()
         for split in np.arange(0.1, 0.99, 0.01):
             # print(round(split,2))
@@ -45,32 +32,15 @@ def main() :
                 neighbors = getNeighbors(trainingSet, testSet[x], k)
                 result = getResponse(neighbors)
                 predictions.append(result)
-                # print('> predicted=' + repr(result) + ', actual=' + repr(testSet[x][-1]))
             accuracy = getAccuracy(testSet, predictions)
-            print('Accuracy: ' + repr(accuracy) + '%' + ' K value -->' + str(k) + ' Split Value -->' + str(round(split,2)))
+            print('Accuracy: ' + repr(accuracy) + '%' + ' K value -->' + str(k) + ' Split Value -->' + str(round(split, 2)))
+            tempSeries = tempSeries.append(pd.Series([repr(accuracy)], [round(split, 2)]))
 
-            tempListForKResults.append(repr(accuracy))
-            tempSeries = tempSeries.append(pd.Series([repr(accuracy)], [round(split,2)]))
-
-        print(tempSeries)
-        # print(tempListForKResults)
-        mainDataFrame.append(tempListForKResults)
         mainDF = mainDF.append(tempSeries, k)
 
-        # sys.exit(0)
-    printOutMainDF(mainDataFrame)
     print(mainDF)
     mainDF.to_csv("KNN_Advanced_Output.csv")
 
-def printOutMainDF(df):
-    print('*' * 45)
-    # print(df)K
-    for set in df:
-        for acc in set:
-            print(acc[:3], end="")
-        print()
-
-    print('*'*45)
 
 def testAllFunctions():
     trainingSet = []
@@ -160,6 +130,4 @@ def getAccuracy(testSet, predictions):
             correct += 1
     return (correct/float(len(testSet))) * 100.0
 
-
 main()
-testMain()
