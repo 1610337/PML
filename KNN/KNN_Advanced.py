@@ -22,6 +22,7 @@ def main() :
     # TODO Change output to pandas DF
 
     mainDataFrame = []
+    mainDF = pd.DataFrame()
     for k in range(3, 10):
         tempListForKResults = []
         tempSeries = pd.Series()
@@ -49,18 +50,21 @@ def main() :
             print('Accuracy: ' + repr(accuracy) + '%' + ' K value -->' + str(k) + ' Split Value -->' + str(round(split,2)))
 
             tempListForKResults.append(repr(accuracy))
-            #tempSeries += pd.Series([repr(accuracy)])
             tempSeries = tempSeries.append(pd.Series([repr(accuracy)], [round(split,2)]))
 
         print(tempSeries)
         # print(tempListForKResults)
         mainDataFrame.append(tempListForKResults)
+        mainDF = mainDF.append(tempSeries, k)
+
         # sys.exit(0)
     printOutMainDF(mainDataFrame)
+    print(mainDF)
+    mainDF.to_csv("KNN_Advanced_Output.csv")
 
 def printOutMainDF(df):
     print('*' * 45)
-    # print(df)
+    # print(df)K
     for set in df:
         for acc in set:
             print(acc[:3], end="")
