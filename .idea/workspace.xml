@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8c0a9b0d-fa8e-46ba-b9de-deee5c679931" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/RandomExperiments/main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SciKitLearn/KNN/Iris.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SciKitLearn/KNN/KNN_SciKit.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SciKitLearn/RandomForest/RandomForest" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -16,13 +14,25 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="KNN_SciKit.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="KNN_SciKit.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SciKitLearn/KNN/KNN_SciKit.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="48" column="63" lean-forward="true" selection-start-line="48" selection-start-column="63" selection-end-line="48" selection-end-column="63" />
+            <state relative-caret-position="136">
+              <caret line="14" selection-start-line="14" selection-end-line="16" selection-end-column="23" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RandomForest" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/SciKitLearn/RandomForest/RandomForest">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="13" column="18" lean-forward="true" selection-start-line="13" selection-start-column="18" selection-end-line="13" selection-end-column="18" />
+              <folding>
+                <element signature="e#0#19#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -47,10 +57,11 @@
         <option value="$PROJECT_DIR$/KNN/KNN_Advanced.py" />
         <option value="$PROJECT_DIR$/RandomExperiments/main.py" />
         <option value="$PROJECT_DIR$/SciKitLearn/KNN/KNN_SciKit.py" />
+        <option value="$PROJECT_DIR$/SciKitLearn/RandomForest/RandomForest" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds">
     <option name="x" value="952" />
     <option name="width" value="977" />
     <option name="height" value="1088" />
@@ -60,7 +71,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -87,12 +97,13 @@
               <item name="GitHubRepo" type="b2602c69:ProjectViewProjectNode" />
               <item name="GitHubRepo" type="462c0819:PsiDirectoryNode" />
               <item name="SciKitLearn" type="462c0819:PsiDirectoryNode" />
-              <item name="KNN" type="462c0819:PsiDirectoryNode" />
+              <item name="RandomForest" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -115,7 +126,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.KNN_SciKit">
+  <component name="RunManager" selected="Python.RandomForest">
     <configuration name="KNN_Advanced" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="GitHubRepo" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -152,6 +163,24 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
+    <configuration name="RandomForest" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="GitHubRepo" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/SciKitLearn/RandomForest" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/SciKitLearn/RandomForest/RandomForest" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="GitHubRepo" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -174,9 +203,11 @@
       <item itemvalue="Python.KNN_Advanced" />
       <item itemvalue="Python.main" />
       <item itemvalue="Python.KNN_SciKit" />
+      <item itemvalue="Python.RandomForest" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.RandomForest" />
         <item itemvalue="Python.KNN_SciKit" />
         <item itemvalue="Python.main" />
         <item itemvalue="Python.KNN_Advanced" />
@@ -197,17 +228,17 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="878" extended-state="6" />
+    <frame x="762" y="0" width="781" height="870" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16471355" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.32985657" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="right" id="R Packages" order="3" />
       <window_info anchor="right" id="R Graphics" order="3" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="7" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3882353" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.15323646" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -230,6 +261,16 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/SciKitLearn/KNN/KNN_SciKit.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="816">
+          <caret line="48" column="63" lean-forward="true" selection-start-line="48" selection-start-column="63" selection-end-line="48" selection-end-column="63" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/RandomExperiments/main.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="493">
@@ -321,9 +362,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
           <caret line="76" column="24" selection-start-line="76" selection-start-column="16" selection-end-line="76" selection-end-column="24" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -331,18 +369,25 @@
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SciKitLearn/KNN/KNN_SciKit.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="14" selection-start-line="14" selection-end-line="16" selection-end-column="23" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SciKitLearn/KNN/KNN_SciKit.py">
+    <entry file="file://$PROJECT_DIR$/SciKitLearn/RandomForest/RandomForest">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="48" column="63" lean-forward="true" selection-start-line="48" selection-start-column="63" selection-end-line="48" selection-end-column="63" />
+        <state relative-caret-position="221">
+          <caret line="13" column="18" lean-forward="true" selection-start-line="13" selection-start-column="18" selection-end-line="13" selection-end-column="18" />
           <folding>
-            <element signature="e#0#10#0" expanded="true" />
+            <element signature="e#0#19#0" expanded="true" />
           </folding>
         </state>
       </provider>
