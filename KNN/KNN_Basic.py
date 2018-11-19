@@ -22,9 +22,9 @@ def main() :
     # generate predictions
     predictions = []
     k = 3
-    for k in range(3,10):
-        for split in range(0.01, 0.99, 0.001):
-            print(split)
+    #for k in range(3,10):
+    #    for split in range(0.01, 0.99, 0.001):
+    #        print(split)
 
     for x in range(len(testSet)):
         neighbors = getNeighbors(trainingSet, testSet[x], k)
