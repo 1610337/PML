@@ -1,5 +1,7 @@
 # List Comprehension Examples
 
+# TODO List compehension with if:   f(i) for i in List if ....
+
 val01 = [1,2,3,4,5,6,7,8,9,10]
 print(val01)
 val01 = [(x+1) for x in val01]

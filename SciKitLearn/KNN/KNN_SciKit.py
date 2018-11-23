@@ -12,6 +12,8 @@ col_names = ['sepal_length', 'sepal_width', 'petal_length', 'petal_width', 'spec
 df = pd.read_csv(url, header=None, names=col_names)
 # print(df.head())
 
+print(df.head())
+
 # get a dataframe without the species column
 df_feat = pd.DataFrame(df, columns=df.columns[:-1])
 # print(df_feat.head())
