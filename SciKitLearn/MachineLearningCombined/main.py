@@ -21,11 +21,17 @@ from sklearn.svm import SVC
 def main():
     X_train, X_test, y_train, y_test = get_filtered_data()
 
-    #knn(X_train, X_test, y_train, y_test)
+    knn_value = knn(X_train, X_test, y_train, y_test)
 
-    #random_forest(X_train, X_test, y_train, y_test)
+    sg_decision_tree_value, random_forest_value = random_forest(X_train, X_test, y_train, y_test)
 
-    svm(X_train, X_test, y_train, y_test)
+    svm_value = svm(X_train, X_test, y_train, y_test)
+
+    print("Precision weighted by avg")
+    print('KNN             : ', knn_value)
+    print('1 Decision Tree : ', sg_decision_tree_value)
+    print('Random Forest   : ', random_forest_value)
+    print('SVM             : ', svm_value)
 
 def knn(X_train, X_test, y_train, y_test):
     # knn model
