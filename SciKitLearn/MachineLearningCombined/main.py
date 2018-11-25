@@ -34,54 +34,37 @@ def knn(X_train, X_test, y_train, y_test):
     pred = knn.predict(X_test)
 
     #  the number of predicted classes which ended up in a wrong classification bin based on the true classes
-    print(confusion_matrix(y_test, pred))
+    # print(confusion_matrix(y_test, pred))
     # Build a text report showing the main classification metrics (like precision)
-    print(classification_report(y_test, pred))
+    report = classification_report(y_test, pred, output_dict=True)
 
-    # using "elbow-method" to choose correct K-value (even tho we have
-    # the highest prediction rate already
-    error_rate = []
-    for i in range(1, 40):
-        knn = KNeighborsClassifier(n_neighbors=1)
-        knn.fit(X_train, y_train)
-        pred_i = knn.predict(X_test)
-        # this is basically the average error rate
-        # where the prediction wasn't exactly equal to
-        # the test values
-        error_rate.append(np.mean(pred_i != y_test))
-
-    plt.figure(figsize=(10, 6))
-    plt.plot(range(1, 40), error_rate, color='blue',
-             linestyle='dashed', marker='o', markerfacecolor='red',
-             markersize=10)
-    plt.title("Error Rate vs. K Value")
-    plt.xlabel('k')
-    plt.ylabel('error rate')
-    plt.savefig('foo.pdf')
+    return report['weighted avg']['precision']
 
 
 def random_forest(X_train, X_test, y_train, y_test):
     # training a single decision tree:
-    # TODO Visualize that tree
     dtree = DecisionTreeClassifier()
     dtree.fit(X_train, y_train)
 
     predictions = dtree.predict(X_test)
-    print("Single Decision Tree:")
-    print(confusion_matrix(y_test, predictions))
-    print('\n')
-    print(classification_report(y_test, predictions))
+    # print("Single Decision Tree:")
+    # print(confusion_matrix(y_test, predictions))
+    # print('\n')
+    # print(classification_report(y_test, predictions))
+    report1 = classification_report(y_test, predictions, output_dict=True)
 
     # now training an actual random forest model
     rfc = RandomForestClassifier(n_estimators=200)
     rfc.fit(X_train, y_train)
 
     rfc_pred = rfc.predict(X_test)
-    print("Random Forest:")
-    print(confusion_matrix(y_test, rfc_pred))
-    print('\n')
-    print(classification_report(y_test, rfc_pred))
+    # print("Random Forest:")
+    # print(confusion_matrix(y_test, rfc_pred))
+    # print('\n')
+    # print(classification_report(y_test, rfc_pred))
+    report2 = classification_report(y_test, rfc_pred, output_dict=True)
 
+    return report1['weighted avg']['precision'], report2['weighted avg']['precision']
 
 def svm(X_train, X_test, y_train, y_test):
     model = SVC()
@@ -89,14 +72,15 @@ def svm(X_train, X_test, y_train, y_test):
     # Model get´s trained with all the default parameters and without data preparation
     # Grid-Search could be used to find better parameters
     model.fit(X_train, y_train)
-
     predictions = model.predict(X_test)
 
-    print(confusion_matrix(y_test, predictions))
-    print()
-    print(classification_report(y_test, predictions))
+    # print(confusion_matrix(y_test, predictions))
+    # print()
+    # print(classification_report(y_test, predictions))
+    report = classification_report(y_test, predictions, output_dict=True)
+    return report['weighted avg']['precision']
 
-    print(type(classification_report(y_test, predictions)))
+
 def get_filtered_data():
     inputseparator = ','  # separator for csv columns
     inputfilename = 'iris.data'  # filename input data
