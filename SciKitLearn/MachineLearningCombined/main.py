@@ -1,19 +1,31 @@
+# General Imports
 import pandas as pd
-from sklearn.model_selection import train_test_split
-import csv
-import pandas as pd
-from sklearn.model_selection import train_test_split
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.metrics import classification_report, confusion_matrix
 import numpy as np
 import matplotlib.pyplot as plt
+from sklearn.metrics import classification_report, confusion_matrix
+from sklearn.model_selection import train_test_split
+
+# KNN
+from sklearn.neighbors import KNeighborsClassifier
+
+# Random Forest
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.ensemble import RandomForestClassifier
+
+# SVM
+from sklearn.svm import SVC
+
+
 
 
 def main():
     X_train, X_test, y_train, y_test = get_filtered_data()
 
-    knn(X_train, X_test, y_train, y_test)
+    #knn(X_train, X_test, y_train, y_test)
 
+    #random_forest(X_train, X_test, y_train, y_test)
+
+    svm(X_train, X_test, y_train, y_test)
 
 def knn(X_train, X_test, y_train, y_test):
     # knn model
@@ -48,6 +60,43 @@ def knn(X_train, X_test, y_train, y_test):
     plt.savefig('foo.pdf')
 
 
+def random_forest(X_train, X_test, y_train, y_test):
+    # training a single decision tree:
+    # TODO Visualize that tree
+    dtree = DecisionTreeClassifier()
+    dtree.fit(X_train, y_train)
+
+    predictions = dtree.predict(X_test)
+    print("Single Decision Tree:")
+    print(confusion_matrix(y_test, predictions))
+    print('\n')
+    print(classification_report(y_test, predictions))
+
+    # now training an actual random forest model
+    rfc = RandomForestClassifier(n_estimators=200)
+    rfc.fit(X_train, y_train)
+
+    rfc_pred = rfc.predict(X_test)
+    print("Random Forest:")
+    print(confusion_matrix(y_test, rfc_pred))
+    print('\n')
+    print(classification_report(y_test, rfc_pred))
+
+
+def svm(X_train, X_test, y_train, y_test):
+    model = SVC()
+
+    # Model get´s trained with all the default parameters and without data preparation
+    # Grid-Search could be used to find better parameters
+    model.fit(X_train, y_train)
+
+    predictions = model.predict(X_test)
+
+    print(confusion_matrix(y_test, predictions))
+    print()
+    print(classification_report(y_test, predictions))
+
+    print(type(classification_report(y_test, predictions)))
 def get_filtered_data():
     inputseparator = ','  # separator for csv columns
     inputfilename = 'iris.data'  # filename input data
