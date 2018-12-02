@@ -1,6 +1,7 @@
 # Particular Data Analysis (with kNN) [1.2]
 
 # TODO NAIVE BAYES
+
 # TODO mini program über alle 3 Verfahren und vergleichen (ohne naive bayes)
 # TODO also quasi die ergebnisse vergleichen und den vorfilter rein machen ("ich will die spalten und die features")
 # TODO die FIlter funktion kann man von hier eigentlich kopieren

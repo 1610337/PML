@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="8c0a9b0d-fa8e-46ba-b9de-deee5c679931" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SciKitLearn/RandomForest/RandomForest" beforeDir="false" afterPath="$PROJECT_DIR$/SciKitLearn/RandomForest/RandomForest.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SciKitLearn/MachineLearningCombined/foo.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/SciKitLearn/MachineLearningCombined/foo.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WorkshopCode/DataAnalysis.py" beforeDir="false" afterPath="$PROJECT_DIR$/WorkshopCode/DataAnalysis.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -14,25 +15,17 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="KNN_SciKit.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SciKitLearn/KNN/KNN_SciKit.py">
+      <file leaf-file-name="spamfilter.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/SciKitLearn/NaiveBayes/SpamFilter/spamfilter.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="14" selection-start-line="14" selection-end-line="16" selection-end-column="23" />
+            <state relative-caret-position="119">
+              <caret line="7" column="61" selection-start-line="7" selection-start-column="61" selection-end-line="7" selection-end-column="61" />
               <folding>
-                <element signature="e#0#10#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RandomForest.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/SciKitLearn/RandomForest/RandomForest.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="33" selection-start-line="8" selection-start-column="33" selection-end-line="8" selection-end-column="33" />
-              <folding>
-                <element signature="e#0#19#0" expanded="true" />
+                <element signature="e#0#9#0" expanded="true" />
+                <element signature="e#764#826#0" />
+                <element signature="e#864#926#0" />
+                <element signature="e#406#1199#0" />
+                <element signature="e#1633#2520#0" />
               </folding>
             </state>
           </provider>
@@ -53,25 +46,32 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/KNN/KNN_Basic.py" />
         <option value="$PROJECT_DIR$/KNN/KNN_Advanced.py" />
-        <option value="$PROJECT_DIR$/RandomExperiments/main.py" />
-        <option value="$PROJECT_DIR$/SciKitLearn/KNN/KNN_SciKit.py" />
         <option value="$PROJECT_DIR$/SciKitLearn/RandomForest/RandomForest" />
+        <option value="$PROJECT_DIR$/RandomExperiments/pandas_experiments.py" />
+        <option value="$PROJECT_DIR$/SciKitLearn/SVM/SVM.py" />
+        <option value="$PROJECT_DIR$/KNN/KNN_Basic.py" />
+        <option value="$PROJECT_DIR$/RandomExperiments/main.py" />
+        <option value="$PROJECT_DIR$/WorkshopCode/DataAn" />
+        <option value="$PROJECT_DIR$/SciKitLearn/KNN/KNN_SciKit.py" />
+        <option value="$PROJECT_DIR$/WorkshopCode/DataAnalysis.py" />
+        <option value="$PROJECT_DIR$/SciKitLearn/MachineLearningCombined/main.py" />
+        <option value="$PROJECT_DIR$/SciKitLearn/NaiveBayes/bayes.py" />
+        <option value="$PROJECT_DIR$/SciKitLearn/NaiveBayes/SpamFilter/spamfilter.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="951" />
-    <option name="width" value="978" />
-    <option name="height" value="1089" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="868" />
+    <option name="y" value="50" />
+    <option name="width" value="980" />
+    <option name="height" value="1090" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -82,35 +82,44 @@
             <path>
               <item name="GitHubRepo" type="b2602c69:ProjectViewProjectNode" />
               <item name="GitHubRepo" type="462c0819:PsiDirectoryNode" />
-              <item name="KNN" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GitHubRepo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GitHubRepo" type="462c0819:PsiDirectoryNode" />
-              <item name="RandomExperiments" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GitHubRepo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GitHubRepo" type="462c0819:PsiDirectoryNode" />
               <item name="SciKitLearn" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="GitHubRepo" type="b2602c69:ProjectViewProjectNode" />
               <item name="GitHubRepo" type="462c0819:PsiDirectoryNode" />
               <item name="SciKitLearn" type="462c0819:PsiDirectoryNode" />
-              <item name="RandomForest" type="462c0819:PsiDirectoryNode" />
+              <item name="NaiveBayes" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GitHubRepo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GitHubRepo" type="462c0819:PsiDirectoryNode" />
+              <item name="SciKitLearn" type="462c0819:PsiDirectoryNode" />
+              <item name="NaiveBayes" type="462c0819:PsiDirectoryNode" />
+              <item name="SpamFilter" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GitHubRepo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GitHubRepo" type="462c0819:PsiDirectoryNode" />
+              <item name="SciKitLearn" type="462c0819:PsiDirectoryNode" />
+              <item name="NaiveBayes" type="462c0819:PsiDirectoryNode" />
+              <item name="SpamFilter" type="462c0819:PsiDirectoryNode" />
+              <item name="dir.mail.input" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../ZEW/repo" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="Errors" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Tim\Documents\University\Fächer\PML\GitHubRepo\SciKitLearn\MachineLearningCombined" />
+      <recent name="C:\Users\Tim\Documents\University\Fächer\PML\GitHubRepo\WorkshopCode" />
       <recent name="C:\Users\Tim\Documents\University\Fächer\PML\GitHubRepo\SciKitLearn\KNN" />
     </key>
   </component>
@@ -126,8 +135,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.RandomForest">
-    <configuration name="KNN_Advanced" type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RunManager" selected="Python.spamfilter">
+    <configuration name="DataAnalysis" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="GitHubRepo" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -135,11 +144,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/KNN" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/WorkshopCode" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/KNN/KNN_Advanced.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/WorkshopCode/DataAnalysis.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -163,7 +172,7 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
-    <configuration name="RandomForest" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="bayes" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="GitHubRepo" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -171,11 +180,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/SciKitLearn/RandomForest" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/SciKitLearn/NaiveBayes" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="C:\Users\Tim\Documents\University\Fächer\PML\GitHubRepo\SciKitLearn\RandomForest\RandomForest.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/SciKitLearn/NaiveBayes/bayes.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -189,28 +198,48 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/RandomExperiments" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/SciKitLearn/MachineLearningCombined" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/RandomExperiments/main.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/SciKitLearn/MachineLearningCombined/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="spamfilter" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="GitHubRepo" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/SciKitLearn/NaiveBayes/SpamFilter" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/SciKitLearn/NaiveBayes/SpamFilter/spamfilter.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
     <list>
-      <item itemvalue="Python.KNN_Advanced" />
-      <item itemvalue="Python.main" />
+      <item itemvalue="Python.DataAnalysis" />
       <item itemvalue="Python.KNN_SciKit" />
-      <item itemvalue="Python.RandomForest" />
+      <item itemvalue="Python.main" />
+      <item itemvalue="Python.bayes" />
+      <item itemvalue="Python.spamfilter" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.RandomForest" />
-        <item itemvalue="Python.KNN_SciKit" />
+        <item itemvalue="Python.spamfilter" />
+        <item itemvalue="Python.bayes" />
         <item itemvalue="Python.main" />
-        <item itemvalue="Python.KNN_Advanced" />
+        <item itemvalue="Python.DataAnalysis" />
+        <item itemvalue="Python.KNN_SciKit" />
       </list>
     </recent_temporary>
   </component>
@@ -228,27 +257,28 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="761" y="0" width="782" height="871" extended-state="0" />
+    <frame x="-7" y="-7" width="1550" height="878" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.3294271" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2513021" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="right" id="R Packages" order="3" />
       <window_info anchor="right" id="R Graphics" order="3" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.2771242" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="7" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.15323646" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32941177" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -256,17 +286,112 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="1" />
+      <option name="time" value="13" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/SciKitLearn/NaiveBayes/bayes.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="8" selection-start-line="7" selection-start-column="8" selection-end-line="7" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WorkshopCode/DataAnalysis.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SciKitLearn/RandomForest/RandomForest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SciKitLearn/KNN/KNN_SciKit.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="15" column="10" selection-start-line="15" selection-start-column="10" selection-end-line="15" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SciKitLearn/RandomForest/RandomForest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" selection-start-line="4" selection-end-line="4" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RandomExperiments/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="30" column="3" lean-forward="true" selection-start-line="30" selection-start-column="3" selection-end-line="30" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RandomExperiments/pandas_experiments.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="4" lean-forward="true" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SciKitLearn/SVM/SVM.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SciKitLearn/KNN/KNN_SciKit.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="15" column="10" selection-start-line="15" selection-start-column="10" selection-end-line="15" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SciKitLearn/RandomForest/RandomForest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RandomExperiments/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="612">
+          <caret line="36" selection-start-line="36" selection-end-line="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RandomExperiments/pandas_experiments.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="4" lean-forward="true" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/SciKitLearn/KNN/KNN_SciKit.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="14" selection-start-line="14" selection-end-line="16" selection-end-column="23" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SciKitLearn/RandomForest/RandomForest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SciKitLearn/KNN/KNN_SciKit.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="14" selection-start-line="14" selection-end-line="16" selection-end-column="23" />
         </state>
       </provider>
     </entry>
@@ -274,9 +399,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="8" column="33" selection-start-line="8" selection-start-column="33" selection-end-line="8" selection-end-column="33" />
-          <folding>
-            <element signature="e#0#19#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -284,9 +406,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="816">
           <caret line="48" column="63" lean-forward="true" selection-start-line="48" selection-start-column="63" selection-end-line="48" selection-end-column="63" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -308,9 +427,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="6" column="53" lean-forward="true" selection-start-line="6" selection-start-column="53" selection-end-line="6" selection-end-column="53" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -363,13 +479,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/RandomExperiments/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="29" column="3" selection-start-line="29" selection-start-column="3" selection-end-line="29" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/SciKitLearn/KNN/Iris.csv">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
@@ -384,29 +493,123 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/WorkshopCode/Iris.csv" />
     <entry file="file://$PROJECT_DIR$/KNN/KNN_Basic.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-column="10" />
+        <state relative-caret-position="255">
+          <caret line="24" column="5" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WorkshopCode/iris.data">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RandomExperiments/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="62" selection-start-line="2" selection-start-column="62" selection-end-line="2" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RandomExperiments/pandas_experiments.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="18" selection-start-line="6" selection-start-column="18" selection-end-line="6" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WorkshopCode/DataAn" />
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/_bootlocale.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SciKitLearn/MachineLearningCombined/iris.data">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WorkshopCode/DataAnalysis.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SciKitLearn/MachineLearningCombined/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="46" column="46" selection-start-line="46" selection-start-column="46" selection-end-line="46" selection-end-column="46" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/SciKitLearn/KNN/KNN_SciKit.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="14" selection-start-line="14" selection-end-line="16" selection-end-column="23" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="51">
+          <caret line="3" column="39" selection-start-line="3" selection-start-column="39" selection-end-line="3" selection-end-column="39" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/SciKitLearn/RandomForest/RandomForest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="33" selection-start-line="8" selection-start-column="33" selection-end-line="8" selection-end-column="33" />
+        <state>
+          <caret selection-end-line="4" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SciKitLearn/SVM/SVM.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="561">
+          <caret line="33" column="49" selection-start-line="23" selection-end-line="33" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SciKitLearn/NaiveBayes/bayes.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="8" selection-start-line="7" selection-start-column="8" selection-end-line="7" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SciKitLearn/NaiveBayes/SpamFilter/dir.nospam/2018-03-21 Kooperationsmöglichkeiten im Bereich Industrial IT zwischen HS Mannheim und SpiraTec AG.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="4" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SciKitLearn/NaiveBayes/SpamFilter/dir.spam/2018-10-25 E-3 Update Newsletter.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SciKitLearn/NaiveBayes/SpamFilter/dir.spam/2018-09-27 E-3 Newsletter.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SciKitLearn/NaiveBayes/SpamFilter/dir.spam/2018-11-08 Die aktuelle Meinung der SAP Community - Teil 2.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SciKitLearn/NaiveBayes/SpamFilter/dir.spam/2018-07-10 Urgent customer notification.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SciKitLearn/NaiveBayes/SpamFilter/dir.spam/2018-06-28 E-3 Newsletter.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SciKitLearn/NaiveBayes/SpamFilter/dir.mail.input/2018-11-23 Informatik-Kolloquium das Internet of Things nahtunaufhaltsam.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SciKitLearn/NaiveBayes/SpamFilter/spamfilter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="61" selection-start-line="7" selection-start-column="61" selection-end-line="7" selection-end-column="61" />
           <folding>
-            <element signature="e#0#19#0" expanded="true" />
+            <element signature="e#0#9#0" expanded="true" />
+            <element signature="e#764#826#0" />
+            <element signature="e#864#926#0" />
+            <element signature="e#406#1199#0" />
+            <element signature="e#1633#2520#0" />
           </folding>
         </state>
       </provider>
