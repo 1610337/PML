@@ -26,16 +26,18 @@ def main():
     for mail in input:
         print("Is this mail a spam: ", mail["Betreff"], mail["Von"])
 
-        if(blacklist_filter(mail["Von"])):
+        if blacklist_filter(mail["Von"]):
             print("Yes --- blacklist")
             continue
-        if(whitelist_filter(mail["Von"])):
+        if whitelist_filter(mail["Von"]):
             print("No --- whitelist")
             continue
         print("Bayes Result: ", bayes_spam_filter(spams, nospams, input))
         break
 
+
 def bayes_spam_filter(spam, nospam, inputFile):
+
     dictionary = get_word_dict(spam)
 
     retures_matrix = extract_features(spam, dictionary)
@@ -59,11 +61,12 @@ def bayes_spam_filter(spam, nospam, inputFile):
     result1 = model1.predict(test_matrix)
     print(confusion_matrix(test_labels, result1))
 
-
     return confusion_matrix(test_labels, result1)
 
+
 def extract_features(files, dictionary_spams):
-    #files = [os.path.join(mail_dir,fi) for fi in os.listdir(mail_dir)]
+
+    # files = [os.path.join(mail_dir,fi) for fi in os.listdir(mail_dir)]
     features_matrix = np.zeros((len(files),3000))
     docID = 0;
     for fil in files:
@@ -84,7 +87,7 @@ def get_word_dict(emails):
     all_words = []
     for mail in emails:
             for i, line in enumerate(mail["Text"]):
-                #if i == 2:  # Body of email is only 3rd line of text file
+                # if i == 2:  # Body of email is only 3rd line of text file
                     words = line.split()
                     # print(line.split())
                     all_words += words
@@ -172,6 +175,6 @@ def get_header_dic(lines):
             returnDic["Betreff"] = line.replace("Betreff:", "").strip()+apenndStr
             # print(returnDic["Betreff"])
 
-
     return returnDic
+
 main()
