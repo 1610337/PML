@@ -1,8 +1,18 @@
 import os
 import re
+from collections import Counter
+import numpy as np
+
+from sklearn.naive_bayes import MultinomialNB, GaussianNB, BernoulliNB
+from sklearn.svm import SVC, NuSVC, LinearSVC
+from sklearn.metrics import confusion_matrix
 
 blacklist = ["123@hotmail.de"]
 whitelist = ["professoren-bounces2@ml.hs-mannheim.de"]
+
+words_to_remove = ["e", "und"]
+top_words_to_account = 50
+
 def main():
 
     path_to_spams = os.path.dirname(os.path.abspath(__file__)) + "/dir.spam/"
@@ -22,6 +32,82 @@ def main():
         if(whitelist_filter(mail["Von"])):
             print("No --- whitelist")
             continue
+        print("Bayes Result: ", bayes_spam_filter(spams, nospams, input))
+        break
+
+def bayes_spam_filter(spam, nospam, inputFile):
+    dictionary = get_word_dict(spam)
+
+    retures_matrix = extract_features(spam, dictionary)
+
+    # Prepare feature vectors per training mail and its labels
+
+    train_labels = np.zeros(18)
+    train_labels[7:17] = 1
+    train_matrix = extract_features(spam, dictionary)
+
+    # Training Naive bayes classifier
+
+    model1 = MultinomialNB()
+    model1.fit(train_matrix, train_labels)
+
+    # Test the unseen mails for Spam
+    test_dir = 'test-mails'
+    test_matrix = extract_features(inputFile, dictionary)
+    test_labels = np.zeros(1)
+    test_labels[1:1] = 1
+    result1 = model1.predict(test_matrix)
+    print(confusion_matrix(test_labels, result1))
+
+
+    return confusion_matrix(test_labels, result1)
+
+def extract_features(files, dictionary_spams):
+    #files = [os.path.join(mail_dir,fi) for fi in os.listdir(mail_dir)]
+    features_matrix = np.zeros((len(files),3000))
+    docID = 0;
+    for fil in files:
+        for i,line in enumerate(fil["Text"]):
+          if i == 2:
+            words = line.split()
+            for word in words:
+              wordID = 0
+              for i,d in enumerate(dictionary_spams):
+                if d[0] == word:
+                  wordID = i
+                  features_matrix[docID,wordID] = words.count(word)
+        docID = docID + 1
+    return features_matrix
+
+
+def get_word_dict(emails):
+    all_words = []
+    for mail in emails:
+            for i, line in enumerate(mail["Text"]):
+                #if i == 2:  # Body of email is only 3rd line of text file
+                    words = line.split()
+                    # print(line.split())
+                    all_words += words
+
+    dictionary = Counter(all_words)
+    # Paste code for non-word removal here(code snippet is given below)
+
+    list_to_remove = list(dictionary.keys())
+    list_to_remove = list_to_remove
+
+    for item in list_to_remove:
+        if item.isalpha() == False:
+            del dictionary[item]
+        elif len(item) == 1:
+            del dictionary[item]
+
+    for item in words_to_remove:
+        if item in list(dictionary.keys()):
+            del dictionary[item]
+
+    dictionary = dictionary.most_common(top_words_to_account)
+
+    return dictionary
 
 
 def blacklist_filter(addresse):
