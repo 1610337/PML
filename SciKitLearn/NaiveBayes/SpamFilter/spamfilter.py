@@ -4,6 +4,8 @@ from collections import Counter
 import numpy as np
 
 from sklearn.naive_bayes import MultinomialNB, GaussianNB, BernoulliNB
+from sklearn.feature_extraction.text import CountVectorizer
+
 from sklearn.svm import SVC, NuSVC, LinearSVC
 from sklearn.metrics import confusion_matrix
 
@@ -19,12 +21,15 @@ def main():
     path_to_nospams = os.path.dirname(os.path.abspath(__file__)) + "/dir.nospam/"
     path_to_inputs = os.path.dirname(os.path.abspath(__file__)) + "/dir.mail.input/"
 
-    spams = read_emails(path_to_spams)
-    nospams = read_emails(path_to_nospams)
-    input = read_emails(path_to_inputs)
+    spams = read_emails(path_to_spams, True)
+    nospams = read_emails(path_to_nospams, False)
+    input = read_emails(path_to_inputs, None)
+
+    training_data = spams + nospams
+
 
     for mail in input:
-        print("Is this mail a spam: ", mail["Betreff"], mail["Von"])
+        print("Is this mail a spam: ", mail["Betreff"])
 
         if blacklist_filter(mail["Von"]):
             print("Yes --- blacklist")
@@ -32,55 +37,45 @@ def main():
         if whitelist_filter(mail["Von"]):
             print("No --- whitelist")
             continue
-        print("Bayes Result: ", bayes_spam_filter(spams, nospams, input))
+        solution = bayes_spam_filter(training_data, mail)
+        if solution == "NoSpam":
+            print("No --- bayes")
+            continue
+        if solution == "Spam":
+            print("Yes --- bayes")
+            continue
+
         break
 
 
-def bayes_spam_filter(spam, nospam, inputFile):
+def bayes_spam_filter(training_data, mail):
 
-    dictionary = get_word_dict(spam)
+    vectorizer = CountVectorizer()
+    counts = vectorizer.fit_transform([mail["text"] for mail in training_data])
 
-    retures_matrix = extract_features(spam, dictionary)
+    classifier = MultinomialNB()
+    targets = [mail["class"] for mail in training_data]
 
-    # Prepare feature vectors per training mail and its labels
+    classifier.fit(counts, targets)
 
-    train_labels = np.zeros(18)
-    train_labels[7:17] = 1
-    train_matrix = extract_features(spam, dictionary)
+    example = mail["text"]
+    example_counts = vectorizer.transform([example])
+    predictions = classifier.predict(example_counts)
 
-    # Training Naive bayes classifier
-
-    model1 = MultinomialNB()
-    model1.fit(train_matrix, train_labels)
-
-    # Test the unseen mails for Spam
-    test_dir = 'test-mails'
-    test_matrix = extract_features(inputFile, dictionary)
-    test_labels = np.zeros(1)
-    test_labels[1:1] = 1
-    result1 = model1.predict(test_matrix)
-    print(confusion_matrix(test_labels, result1))
-
-    return confusion_matrix(test_labels, result1)
+    index = 0
+    coef_features_c1_c2 = []
 
 
-def extract_features(files, dictionary_spams):
+    for feat, c1, c2 in zip(vectorizer.get_feature_names(), classifier.feature_count_[0], classifier.feature_count_[1]):
+        coef_features_c1_c2.append(tuple([classifier.coef_[0][index], feat, c1, c2]))
+        index += 1
 
-    # files = [os.path.join(mail_dir,fi) for fi in os.listdir(mail_dir)]
-    features_matrix = np.zeros((len(files),3000))
-    docID = 0;
-    for fil in files:
-        for i,line in enumerate(fil["Text"]):
-          if i == 2:
-            words = line.split()
-            for word in words:
-              wordID = 0
-              for i,d in enumerate(dictionary_spams):
-                if d[0] == word:
-                  wordID = i
-                  features_matrix[docID,wordID] = words.count(word)
-        docID = docID + 1
-    return features_matrix
+    for i in sorted(coef_features_c1_c2):
+        print(i)
+
+    return predictions[0]
+
+
 
 
 def get_word_dict(emails):
@@ -124,7 +119,7 @@ def whitelist_filter(addresse):
     return False
 
 
-def read_emails(path):
+def read_emails(path, spam):
 
     # TODO check if the file is actually a txt file
 
@@ -133,20 +128,33 @@ def read_emails(path):
         finalDic = {}
         with open(path+filename, 'r') as text_file:
             header = []
-            normalText = []
+            normalText = ""
             noHeader = False
-            for idx, line in enumerate(text_file):
+
+            for line in text_file:
                 # The first empty line marks the end of the header
                 if line == "\n" and not(noHeader):
                     finalDic.update(get_header_dic(header))
                     noHeader = True
 
                 if noHeader and line.strip() != "":
-                    normalText.append(line.strip())
+                    normalText = normalText + " " + (line.strip())
                 else:
                     header.append(line)
 
-            finalDic["Text"] = normalText
+            # if we wanna append something from the header into the normal text:
+            # try: normalText = normalText + finalDic["An"]
+            # except: pass
+
+            # this is to remove all single characters in the string
+            normalText = ' '.join([w for w in normalText.split() if len(w)>1])
+
+            finalDic["text"] = normalText
+            if spam:
+                finalDic["class"] = "Spam"
+            else:
+                finalDic["class"] = "NoSpam"
+
         mails.append(finalDic)
 
 
