@@ -1,31 +1,39 @@
 import os
 import re
 from collections import Counter
-import numpy as np
 
-from sklearn.naive_bayes import MultinomialNB, GaussianNB, BernoulliNB
+from sklearn.naive_bayes import MultinomialNB
 from sklearn.feature_extraction.text import CountVectorizer
 
-from sklearn.svm import SVC, NuSVC, LinearSVC
-from sklearn.metrics import confusion_matrix
 
 blacklist = ["123@hotmail.de"]
 whitelist = ["professoren-bounces2@ml.hs-mannheim.de"]
-
+critical_value = 0.5
 words_to_remove = ["e", "und"]
 top_words_to_account = 50
-
+dic = {}
 
 def main():
 
+    # Read inputfile and fill variables
+    with open("input_file.txt", 'r') as text_file:
+        [dic.update(dict) for dict in [{line.split(":")[0]:line.split(":")[1].strip().split(",")} for line in text_file.readlines()]]
+    global blacklist, whitelist, critical_value, words_to_remove, top_words_to_account
+    blacklist = dic["blacklist"]
+    whitelist = dic["whitelist"]
+    critical_value = float(dic["critical_value"][0])
+    words_to_remove = dic["words_to_remove"]
+    top_words_to_account = dic["top_words_to_account"][0]
+
+    # set up paths to folders
     path_to_spams = os.path.dirname(os.path.abspath(__file__)) + "/dir.spam/"
     path_to_nospams = os.path.dirname(os.path.abspath(__file__)) + "/dir.nospam/"
     path_to_inputs = os.path.dirname(os.path.abspath(__file__)) + "/dir.mail.input/"
 
+    # read emails and append
     spams = read_emails(path_to_spams, True)
     nospams = read_emails(path_to_nospams, False)
     input = read_emails(path_to_inputs, None)
-
     training_data = spams + nospams
 
     for mail in input:
@@ -60,7 +68,7 @@ def bayes_spam_filter(training_data, mail):
 
     example = mail["text"]
     example_counts = vectorizer.transform([example])
-    predictions = classifier.predict(example_counts)
+    predictions = classifier.predict_proba(example_counts)
 
     index = 0
     coef_features_c1_c2 = []
@@ -69,10 +77,15 @@ def bayes_spam_filter(training_data, mail):
         coef_features_c1_c2.append(tuple([classifier.coef_[0][index], feat, c1, c2]))
         index += 1
 
-    for i in sorted(coef_features_c1_c2):
-        print(i)
+    #for i in sorted(coef_features_c1_c2):
+        #print(i)
 
-    return predictions[0]
+    print(predictions[0][0], "---", predictions[0][1])
+    if predictions[0][0] >= critical_value:
+        return "NoSpam"
+    else:
+        return "Spam"
+
 
 
 def get_word_dict(emails):
