@@ -15,6 +15,7 @@ whitelist = ["professoren-bounces2@ml.hs-mannheim.de"]
 words_to_remove = ["e", "und"]
 top_words_to_account = 50
 
+
 def main():
 
     path_to_spams = os.path.dirname(os.path.abspath(__file__)) + "/dir.spam/"
@@ -26,7 +27,6 @@ def main():
     input = read_emails(path_to_inputs, None)
 
     training_data = spams + nospams
-
 
     for mail in input:
         print("Is this mail a spam: ", mail["Betreff"])
@@ -65,7 +65,6 @@ def bayes_spam_filter(training_data, mail):
     index = 0
     coef_features_c1_c2 = []
 
-
     for feat, c1, c2 in zip(vectorizer.get_feature_names(), classifier.feature_count_[0], classifier.feature_count_[1]):
         coef_features_c1_c2.append(tuple([classifier.coef_[0][index], feat, c1, c2]))
         index += 1
@@ -74,8 +73,6 @@ def bayes_spam_filter(training_data, mail):
         print(i)
 
     return predictions[0]
-
-
 
 
 def get_word_dict(emails):
@@ -94,7 +91,7 @@ def get_word_dict(emails):
     list_to_remove = list_to_remove
 
     for item in list_to_remove:
-        if item.isalpha() == False:
+        if not(item.isalpha()):
             del dictionary[item]
         elif len(item) == 1:
             del dictionary[item]
@@ -112,6 +109,7 @@ def blacklist_filter(addresse):
     if addresse in blacklist:
         return True
     return False
+
 
 def whitelist_filter(addresse):
     if addresse in whitelist:
@@ -157,7 +155,6 @@ def read_emails(path, spam):
 
         mails.append(finalDic)
 
-
     return mails
 
 
@@ -184,5 +181,6 @@ def get_header_dic(lines):
             # print(returnDic["Betreff"])
 
     return returnDic
+
 
 main()
