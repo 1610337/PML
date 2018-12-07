@@ -37,6 +37,9 @@ def main():
     input = read_emails(path_to_inputs, None)
     training_data = spams + nospams
 
+    # train model
+    classifier, vectorizer = train_model(training_data)
+
     for mail in input:
         print("Is this mail a spam: ", mail["Betreff"])
 
@@ -46,7 +49,7 @@ def main():
         if whitelist_filter(mail["Von"]):
             print("No --- whitelist")
             continue
-        solution = bayes_spam_filter(training_data, mail)
+        solution = bayes_spam_filter(classifier, vectorizer, mail)
         if solution == "NoSpam":
             print("No --- bayes")
             continue
@@ -54,11 +57,22 @@ def main():
             print("Yes --- bayes")
             continue
 
+        # TODO let the code learn according to that output
+
         break
 
 
-def bayes_spam_filter(training_data, mail):
+# TODO implement
+def copy_mail_in_out():
+    return
 
+
+# TODO implement
+def write_in_final_evaluation():
+    return
+
+
+def train_model(training_data):
     vectorizer = CountVectorizer()
     counts = vectorizer.fit_transform([mail["text"] for mail in training_data])
 
@@ -66,6 +80,11 @@ def bayes_spam_filter(training_data, mail):
     targets = [mail["class"] for mail in training_data]
 
     classifier.fit(counts, targets)
+
+    return classifier, vectorizer
+
+
+def bayes_spam_filter(classifier, vectorizer, mail):
 
     example = mail["text"]
     example_counts = vectorizer.transform([example])
