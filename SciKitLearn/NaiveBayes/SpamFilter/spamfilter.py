@@ -4,6 +4,7 @@ from collections import Counter
 
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.feature_extraction.text import CountVectorizer
+import pandas as pd
 
 # Please set input parameters in input_file.txt
 blacklist = []
@@ -49,6 +50,7 @@ def main():
         if whitelist_filter(mail["Von"]):
             print("No --- whitelist")
             continue
+
         solution = bayes_spam_filter(classifier, vectorizer, mail)
         if solution == "NoSpam":
             print("No --- bayes")
@@ -81,6 +83,19 @@ def train_model(training_data):
 
     classifier.fit(counts, targets)
 
+    # write word count into output file
+    index = 0
+    coef_features_c1_c2 = []
+    for feat, c1, c2 in zip(vectorizer.get_feature_names(), classifier.feature_count_[0], classifier.feature_count_[1]):
+        coef_features_c1_c2.append(tuple([classifier.coef_[0][index], feat, c1, c2]))
+        index += 1
+    # print(sorted(coef_features_c1_c2))
+    df = pd.DataFrame(columns=["Word", "SpamCount", "HamCount"])
+    for ind, i in enumerate(sorted(coef_features_c1_c2)):
+        df.loc[ind] = [i[1], i[2], i[3]]
+    #print(df.head())
+    df.to_csv("wordcount.csv", index=False)
+
     return classifier, vectorizer
 
 
@@ -90,15 +105,6 @@ def bayes_spam_filter(classifier, vectorizer, mail):
     example_counts = vectorizer.transform([example])
     predictions = classifier.predict_proba(example_counts)
 
-    index = 0
-    coef_features_c1_c2 = []
-
-    for feat, c1, c2 in zip(vectorizer.get_feature_names(), classifier.feature_count_[0], classifier.feature_count_[1]):
-        coef_features_c1_c2.append(tuple([classifier.coef_[0][index], feat, c1, c2]))
-        index += 1
-
-    #for i in sorted(coef_features_c1_c2):
-        #print(i)
 
     print(predictions[0][0], "---", predictions[0][1])
     if predictions[0][0] >= critical_value:
