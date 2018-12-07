@@ -5,13 +5,14 @@ from collections import Counter
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.feature_extraction.text import CountVectorizer
 
-
-blacklist = ["123@hotmail.de"]
-whitelist = ["professoren-bounces2@ml.hs-mannheim.de"]
-critical_value = 0.5
-words_to_remove = ["e", "und"]
-top_words_to_account = 50
+# Please set input parameters in input_file.txt
+blacklist = []
+whitelist = []
+critical_value = 0.0
+words_to_remove = []
+top_words_to_account = 0
 dic = {}
+
 
 def main():
 
