@@ -15,6 +15,7 @@ words_to_remove = []
 top_words_to_account = 0
 dic = {}
 
+current_path = os.path.dirname(os.path.abspath(__file__))
 
 def main():
 
@@ -29,9 +30,9 @@ def main():
     top_words_to_account = dic["top_words_to_account"][0]
 
     # set up paths to folders
-    path_to_spams = os.path.dirname(os.path.abspath(__file__)) + "/dir.spam/"
-    path_to_nospams = os.path.dirname(os.path.abspath(__file__)) + "/dir.nospam/"
-    path_to_inputs = os.path.dirname(os.path.abspath(__file__)) + "/dir.mail.input/"
+    path_to_spams = current_path + "/dir.spam/"
+    path_to_nospams = current_path + "/dir.nospam/"
+    path_to_inputs = current_path + "/dir.mail.input/"
 
     # read emails and append
     spams = read_emails(path_to_spams, True)
@@ -46,8 +47,8 @@ def main():
         print("Is this mail a spam: ", mail["Betreff"])
 
         # Outputfile
-        of = open(os.path.dirname(os.path.abspath(__file__)) + "/dir.mail.output/" + mail["title"]+"_result", 'w')
-        print('Spam analyse des files '+ mail["title"] + '\n', file=of)
+        of = open(current_path + "/dir.mail.output/" + mail["title"]+"_result", 'w')
+        print('Spam analyse des files ' + mail["title"] + '\n', file=of)
 
         if blacklist_filter(mail["Von"]):
             print("Yes --- blacklist")
@@ -78,18 +79,10 @@ def main():
 
         break
 
+
 def final_operations(of, filename):
     of.close()
-    shutil.copy(os.path.dirname(os.path.abspath(__file__))+"/dir.mail.input/"+filename, os.path.dirname(os.path.abspath(__file__))+"/dir.mail.output")
-
-# TODO implement
-def copy_mail_in_out():
-    return
-
-
-# TODO implement
-def write_in_final_evaluation():
-    return
+    shutil.copy(current_path+"/dir.mail.input/"+filename, current_path+"/dir.mail.output")
 
 
 def train_model(training_data):
@@ -111,7 +104,7 @@ def train_model(training_data):
     df = pd.DataFrame(columns=["Word", "SpamCount", "HamCount"])
     for ind, i in enumerate(sorted(coef_features_c1_c2)):
         df.loc[ind] = [i[1], i[2], i[3]]
-    #print(df.head())
+    #  print(df.head())
     df.to_csv("wordcount.csv", index=False)
 
     return classifier, vectorizer
@@ -129,7 +122,6 @@ def bayes_spam_filter(classifier, vectorizer, mail):
         return "NoSpam", predictions[0][0], predictions[0][1]
     else:
         return "Spam", predictions[0][0], predictions[0][1]
-
 
 
 def get_word_dict(emails):
