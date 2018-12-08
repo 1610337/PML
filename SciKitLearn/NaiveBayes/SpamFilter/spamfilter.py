@@ -44,19 +44,34 @@ def main():
     for mail in input:
         print("Is this mail a spam: ", mail["Betreff"])
 
+        # Outputfile
+        of = open(os.path.dirname(os.path.abspath(__file__)) + "/dir.mail.output/" + mail["title"], 'w')
+        print('Spam analyse des files '+ mail["title"] + '\n', file=of)
+
         if blacklist_filter(mail["Von"]):
             print("Yes --- blacklist")
+            print('Da der Absender auf der Blacklist ist ist diese Mail Spam ', file=of)
+            of.close()
             continue
         if whitelist_filter(mail["Von"]):
             print("No --- whitelist")
+            print('Da der Absender auf der Whitelist ist ist diese Mail NoSpam ', file=of)
+            of.close()
             continue
 
-        solution = bayes_spam_filter(classifier, vectorizer, mail)
+        solution, no_spam_pred, spam_pred = bayes_spam_filter(classifier, vectorizer, mail)
         if solution == "NoSpam":
             print("No --- bayes")
+            print('Nach dem Bayes-Verfahren ist diese Mail kein Spam \n', file=of)
+            print('NoSpam Wahrscheinlichkeit:', no_spam_pred,' Spam Wahrscheinlichkeit:' , spam_pred, file=of)
+            of.close()
             continue
         if solution == "Spam":
             print("Yes --- bayes")
+            print('Nach dem Bayes-Verfahren ist diese Mail Spam \n', file=of)
+            print('NoSpam Wahrscheinlichkeit:', no_spam_pred,' Spam Wahrscheinlichkeit:' , spam_pred, file=of)
+            of.close()
+
             continue
 
         # TODO let the code learn according to that output
@@ -108,9 +123,9 @@ def bayes_spam_filter(classifier, vectorizer, mail):
 
     print(predictions[0][0], "---", predictions[0][1])
     if predictions[0][0] >= critical_value:
-        return "NoSpam"
+        return "NoSpam", predictions[0][0], predictions[0][1]
     else:
-        return "Spam"
+        return "Spam", predictions[0][0], predictions[0][1]
 
 
 
@@ -187,6 +202,7 @@ def read_emails(path, spam):
             normalText = ' '.join([w for w in normalText.split() if len(w)>1])
 
             finalDic["text"] = normalText
+            finalDic["title"] = filename
             if spam:
                 finalDic["class"] = "Spam"
             else:
