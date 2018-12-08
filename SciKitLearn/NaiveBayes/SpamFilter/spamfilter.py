@@ -1,6 +1,7 @@
 import os
 import re
 from collections import Counter
+import shutil
 
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.feature_extraction.text import CountVectorizer
@@ -45,18 +46,18 @@ def main():
         print("Is this mail a spam: ", mail["Betreff"])
 
         # Outputfile
-        of = open(os.path.dirname(os.path.abspath(__file__)) + "/dir.mail.output/" + mail["title"], 'w')
+        of = open(os.path.dirname(os.path.abspath(__file__)) + "/dir.mail.output/" + mail["title"]+"_result", 'w')
         print('Spam analyse des files '+ mail["title"] + '\n', file=of)
 
         if blacklist_filter(mail["Von"]):
             print("Yes --- blacklist")
             print('Da der Absender auf der Blacklist ist ist diese Mail Spam ', file=of)
-            of.close()
+            final_operations(of, mail["title"])
             continue
         if whitelist_filter(mail["Von"]):
             print("No --- whitelist")
             print('Da der Absender auf der Whitelist ist ist diese Mail NoSpam ', file=of)
-            of.close()
+            final_operations(of, mail["title"])
             continue
 
         solution, no_spam_pred, spam_pred = bayes_spam_filter(classifier, vectorizer, mail)
@@ -64,20 +65,22 @@ def main():
             print("No --- bayes")
             print('Nach dem Bayes-Verfahren ist diese Mail kein Spam \n', file=of)
             print('NoSpam Wahrscheinlichkeit:', no_spam_pred,' Spam Wahrscheinlichkeit:' , spam_pred, file=of)
-            of.close()
+            final_operations(of, mail["title"])
             continue
         if solution == "Spam":
             print("Yes --- bayes")
             print('Nach dem Bayes-Verfahren ist diese Mail Spam \n', file=of)
             print('NoSpam Wahrscheinlichkeit:', no_spam_pred,' Spam Wahrscheinlichkeit:' , spam_pred, file=of)
-            of.close()
-
+            final_operations(of, mail["title"])
             continue
 
         # TODO let the code learn according to that output
 
         break
 
+def final_operations(of, filename):
+    of.close()
+    shutil.copy(os.path.dirname(os.path.abspath(__file__))+"/dir.mail.input/"+filename, os.path.dirname(os.path.abspath(__file__))+"/dir.mail.output")
 
 # TODO implement
 def copy_mail_in_out():
