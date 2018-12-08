@@ -17,6 +17,7 @@ dic = {}
 
 current_path = os.path.dirname(os.path.abspath(__file__))
 
+
 def main():
 
     # Read inputfile and fill variables
@@ -105,7 +106,7 @@ def train_model(training_data):
     for ind, i in enumerate(sorted(coef_features_c1_c2)):
         df.loc[ind] = [i[1], i[2], i[3]]
     #  print(df.head())
-    df.to_csv("wordcount.csv", index=False)
+    df.to_csv(current_path + "/dir.mail.output/" + "wordcount.csv", index=False)
 
     return classifier, vectorizer
 
@@ -115,7 +116,6 @@ def bayes_spam_filter(classifier, vectorizer, mail):
     example = mail["text"]
     example_counts = vectorizer.transform([example])
     predictions = classifier.predict_proba(example_counts)
-
 
     print(predictions[0][0], "---", predictions[0][1])
     if predictions[0][0] >= critical_value:
