@@ -1,14 +1,11 @@
 # General Imports
 import pandas as pd
 import numpy as np
-from sklearn.metrics import classification_report, confusion_matrix
+from sklearn.metrics import classification_report
 from sklearn.model_selection import train_test_split
 
 # KNN
 from sklearn.neighbors import KNeighborsClassifier
-
-# KNN Bagging
-from sklearn.ensemble import BaggingClassifier
 
 # Random Forest
 from sklearn.tree import DecisionTreeClassifier
@@ -17,7 +14,6 @@ from sklearn.ensemble import RandomForestClassifier, VotingClassifier
 # SVM
 from sklearn.svm import SVC
 
-import parameters as pa
 import DataAnalysis
 
 import sys
@@ -26,8 +22,6 @@ import sys
 def main():
 
     X_train, X_test, y_train, y_test = get_filtered_data()
-
-    #sys.exit(0)
 
     knn_value = knn(X_train, X_test, y_train, y_test)
 
