@@ -112,9 +112,15 @@ def svm(X_train, X_test, y_train, y_test):
 def get_filtered_data():
 
     df = DataAnalysis.get_filtered_data()
-
+    '''
+    # create a new feature
+    print(df.head())
+    df['newcol'] = df['sepal_length']*df['sepal_width']
+    df = df.drop(['sepal_width', 'sepal_length'], axis=1)
+    print(df.head())
+    '''
     # get a dataframe without the species column
-    df_feat = pd.DataFrame(df, columns=df.columns[:-1])
+    df_feat = df.drop(columns=['species'])
 
     # split dataset into training and testing sets
     X = df_feat

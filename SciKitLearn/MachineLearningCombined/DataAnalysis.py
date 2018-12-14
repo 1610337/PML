@@ -77,6 +77,9 @@ def get_filtered_data():
     of.close()
 
     df = pd.DataFrame.from_records(rawdata, columns=par.col_names)
+
+    df[['sepal_length', 'sepal_width', 'petal_length', 'petal_width']] = df[['sepal_length', 'sepal_width', 'petal_length', 'petal_width']].apply(pd.to_numeric)
+
     df.to_csv("data_results.csv")
 
     return df

@@ -11,4 +11,5 @@ firstrelpred   = 10                           #count of first neighbours in outp
 rpdigits       = 4                            #relative prediction: number of digits after decimal point
 dnnrange       = [0,1,2,3,4]                  #show different nearest neighbour range
 col_names = ['sepal_length', 'sepal_width', 'petal_length', 'petal_width', 'species']
+feature_col_names = ['sepal_length', 'sepal_width', 'petal_length', 'petal_width']
 printseparator = '*'*80+'\n'
