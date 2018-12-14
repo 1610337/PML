@@ -27,8 +27,6 @@ def main():
 
     X_train, X_test, y_train, y_test = get_filtered_data()
 
-    print(pa.x())
-
     #sys.exit(0)
 
     knn_value = knn(X_train, X_test, y_train, y_test)
