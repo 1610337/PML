@@ -8,6 +8,9 @@ from sklearn.model_selection import train_test_split
 # KNN
 from sklearn.neighbors import KNeighborsClassifier
 
+# KNN Bagging
+from sklearn.ensemble import BaggingClassifier
+
 # Random Forest
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier
@@ -22,6 +25,7 @@ def main():
     X_train, X_test, y_train, y_test = get_filtered_data()
 
     knn_value = knn(X_train, X_test, y_train, y_test)
+    knn_bagging_value = knn_bagging(X_train, y_train)
 
     sg_decision_tree_value, random_forest_value = random_forest(X_train, X_test, y_train, y_test)
 
@@ -32,6 +36,21 @@ def main():
     print('1 Decision Tree : ', sg_decision_tree_value)
     print('Random Forest   : ', random_forest_value)
     print('SVM             : ', svm_value)
+
+    print("Knn-Bagging:", knn_bagging_value)
+
+def knn_bagging(X_train, y_train):
+    np.array(X_train).reshape(-1,1)
+    np.array(y_train).reshape(-1, 1)
+    X_train = np.ravel(X_train)
+    y_train = np.ravel(y_train)
+
+    m = KNeighborsClassifier(n_neighbors=1)
+    bag = BaggingClassifier(m, max_samples=5, max_features=2,n_jobs=2, oob_score=True)
+    bag.fit(X_train, y_train)
+
+    return bag.oob_score
+
 
 def knn(X_train, X_test, y_train, y_test):
     # knn model
