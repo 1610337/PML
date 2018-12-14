@@ -77,5 +77,6 @@ def get_filtered_data():
     of.close()
 
     df = pd.DataFrame.from_records(rawdata, columns=par.col_names)
+    df.to_csv("data_results.csv")
 
     return df
