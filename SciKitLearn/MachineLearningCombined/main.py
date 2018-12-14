@@ -1,7 +1,6 @@
 # General Imports
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
 from sklearn.metrics import classification_report, confusion_matrix
 from sklearn.model_selection import train_test_split
 
@@ -18,14 +17,19 @@ from sklearn.ensemble import RandomForestClassifier
 # SVM
 from sklearn.svm import SVC
 
+import parameters as pa
 
+import sys
 
 
 def main():
-    X_train, X_test, y_train, y_test = get_filtered_data()
+
+    X_train, X_test, y_train, y_test = get_filtered_data(pa.inputseparator, pa.inputfilename, pa.labelcolumn, pa.columnfilter, pa.featurecols, pa.linefilter, pa.col_names)
+
+    #sys.exit(0)
 
     knn_value = knn(X_train, X_test, y_train, y_test)
-    knn_bagging_value = knn_bagging(X_train, y_train)
+    #knn_bagging_value = knn_bagging(X_train, y_train)
 
     sg_decision_tree_value, random_forest_value = random_forest(X_train, X_test, y_train, y_test)
 
@@ -37,7 +41,8 @@ def main():
     print('Random Forest   : ', random_forest_value)
     print('SVM             : ', svm_value)
 
-    print("Knn-Bagging:", knn_bagging_value)
+    #print("Knn-Bagging:", knn_bagging_value)
+
 
 def knn_bagging(X_train, y_train):
     np.array(X_train).reshape(-1,1)
@@ -91,6 +96,7 @@ def random_forest(X_train, X_test, y_train, y_test):
 
     return report1['weighted avg']['precision'], report2['weighted avg']['precision']
 
+
 def svm(X_train, X_test, y_train, y_test):
     model = SVC()
 
@@ -106,16 +112,7 @@ def svm(X_train, X_test, y_train, y_test):
     return report['weighted avg']['precision']
 
 
-def get_filtered_data():
-    inputseparator = ','  # separator for csv columns
-    inputfilename = 'iris.data'  # filename input data
-    labelcolumn = 4  # column of label
-    columnfilter = [0, 1, 2, 3]  # columns with features
-    featurecols = []  # selected Features
-    linefilter = '[1,2]'  # linefilter: lines to ignore
-
-    col_names = ['sepal_length', 'sepal_width', 'petal_length', 'petal_width', 'species']
-
+def get_filtered_data(inputseparator, inputfilename, labelcolumn, columnfilter, featurecols, linefilter, col_names):
     # Load Data
     filedata = [line.split(inputseparator) for line in open(inputfilename).read().split("\n") if line != '']
 
