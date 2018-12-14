@@ -12,7 +12,7 @@ from sklearn.ensemble import BaggingClassifier
 
 # Random Forest
 from sklearn.tree import DecisionTreeClassifier
-from sklearn.ensemble import RandomForestClassifier
+from sklearn.ensemble import RandomForestClassifier, VotingClassifier
 
 # SVM
 from sklearn.svm import SVC
@@ -41,18 +41,23 @@ def main():
     print('Random Forest   : ', random_forest_value)
     print('SVM             : ', svm_value)
 
+    x = knn_bagging(X_train, X_test, y_train, y_test)
+    print("Bagging", x)
 
-def knn_bagging(X_train, y_train):
-    np.array(X_train).reshape(-1,1)
-    np.array(y_train).reshape(-1, 1)
-    X_train = np.ravel(X_train)
-    y_train = np.ravel(y_train)
 
-    m = KNeighborsClassifier(n_neighbors=1)
-    bag = BaggingClassifier(m, max_samples=5, max_features=2,n_jobs=2, oob_score=True)
-    bag.fit(X_train, y_train)
+def knn_bagging(X_train, X_test, y_train, y_test):
+    knn = KNeighborsClassifier(n_neighbors=1)
+    dtree = DecisionTreeClassifier()
+    supportvc = SVC()
 
-    return bag.oob_score
+    clf1 = VotingClassifier(estimators=[('knn', knn), ('dtree', dtree), ('supportvc', supportvc)], voting='hard')
+    clf1.fit(X_train, y_train)
+
+    predictions = clf1.predict(X_test)
+
+    report = classification_report(y_test, predictions, output_dict=True)
+
+    return report['weighted avg']['precision']
 
 
 def knn(X_train, X_test, y_train, y_test):
