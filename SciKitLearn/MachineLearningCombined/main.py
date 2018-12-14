@@ -18,18 +18,20 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.svm import SVC
 
 import parameters as pa
+import DataAnalysis
 
 import sys
 
 
 def main():
 
-    X_train, X_test, y_train, y_test = get_filtered_data(pa.inputseparator, pa.inputfilename, pa.labelcolumn, pa.columnfilter, pa.featurecols, pa.linefilter, pa.col_names)
+    X_train, X_test, y_train, y_test = get_filtered_data()
+
+    print(pa.x())
 
     #sys.exit(0)
 
     knn_value = knn(X_train, X_test, y_train, y_test)
-    #knn_bagging_value = knn_bagging(X_train, y_train)
 
     sg_decision_tree_value, random_forest_value = random_forest(X_train, X_test, y_train, y_test)
 
@@ -40,8 +42,6 @@ def main():
     print('1 Decision Tree : ', sg_decision_tree_value)
     print('Random Forest   : ', random_forest_value)
     print('SVM             : ', svm_value)
-
-    #print("Knn-Bagging:", knn_bagging_value)
 
 
 def knn_bagging(X_train, y_train):
@@ -112,28 +112,12 @@ def svm(X_train, X_test, y_train, y_test):
     return report['weighted avg']['precision']
 
 
-def get_filtered_data(inputseparator, inputfilename, labelcolumn, columnfilter, featurecols, linefilter, col_names):
-    # Load Data
-    filedata = [line.split(inputseparator) for line in open(inputfilename).read().split("\n") if line != '']
+def get_filtered_data():
 
-    # Drop rows of data
-    rawdata = [[filedata[j][i] for i in range(len(filedata[j])) if i in columnfilter or i == labelcolumn] for j in
-               range(len(filedata)) if eval('j not in ' + linefilter)]
-
-    '''
-        dt = {}  # Working Data; Select features
-        for i in range(len(rawdata)):
-        dt[i] = {'features': [rawdata[i][k] for k in featurecols], 'label': rawdata[i][labelcolumn]}
-    '''
-    # Create dataframe from the rawdata
-    df = pd.DataFrame.from_records(rawdata, columns=col_names)
-    # drop feature columns
-    df = df.drop(featurecols, axis=1)
+    df = DataAnalysis.get_filtered_data()
 
     # get a dataframe without the species column
     df_feat = pd.DataFrame(df, columns=df.columns[:-1])
-
-
 
     # split dataset into training and testing sets
     X = df_feat
