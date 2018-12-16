@@ -20,7 +20,7 @@ import sys
 
 
 def main():
-    X_train, X_test, y_train, y_test = get_filtered_data()
+    X_train, X_test, y_train, y_test, returnStr = get_filtered_data()
 
     knn_value = knn(X_train, X_test, y_train, y_test)
 
@@ -30,6 +30,14 @@ def main():
 
     bagging_value = ensemble_learning(X_train, X_test, y_train, y_test)
 
+
+    of = open("iris_outputfile.txt", 'a') # a to write inside
+    print("*"*60, file=of)
+    print("", file=of)
+
+    of.write(returnStr)
+    print('Particular Data Analysis (with kNN) [1.2]\n', file=of)
+
     print("Precision weighted by avg")
     print('KNN             : ', knn_value)
     # print('1 Decision Tree : ', sg_decision_tree_value)
@@ -37,6 +45,11 @@ def main():
     print('SVM             : ', svm_value)
     print("Bagging         : ", bagging_value)
 
+    print("Precision weighted by avg", file=of)
+    print('KNN             : ', knn_value, file=of)
+    print('Random Forest   : ', random_forest_value, file=of)
+    print('SVM             : ', svm_value, file=of)
+    print("Bagging         : ", bagging_value, file=of)
 
 def ensemble_learning(X_train, X_test, y_train, y_test):
     knn = KNeighborsClassifier(n_neighbors=1)
@@ -67,7 +80,7 @@ def knn(X_train, X_test, y_train, y_test):
     ## See how the model performs on the test data.
     knn_score = knn.score(X_test, y_test)
 
-    print(knn_score)
+    #print(knn_score)
 
     #print(report)
 
@@ -117,7 +130,11 @@ def svm(X_train, X_test, y_train, y_test):
 
 def get_filtered_data():
 
-    df = DataAnalysis.get_filtered_data()
+    df, returnStr = DataAnalysis.get_filtered_data()
+
+    print(df.head())
+    returnStr += str(df.head())
+
     '''
     # create a new feature
     print(df.head())
@@ -135,6 +152,6 @@ def get_filtered_data():
     # random_state = seed for random values
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3)
 
-    return X_train, X_test, y_train, y_test
+    return X_train, X_test, y_train, y_test, returnStr
 
 main()

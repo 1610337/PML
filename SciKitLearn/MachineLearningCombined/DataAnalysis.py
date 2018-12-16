@@ -24,9 +24,9 @@ komma_thingy = par.komma_thingy
 
 def get_filtered_data():
     # Header in Outputfile
-    of = open(par.outputfilename, 'w')
+    of = open(par.outputfilename, 'w') # h to write inside
     print('Particular Data Analysis (with kNN) [1.2]\n', file=of)
-    print(f"selected features: {featurecols}", file=of)
+   # print(f"selected features: {featurecols}", file=of)
     print(f"ignored lines: {linefilter}", file=of)
     print(printseparator, file=of)
 
@@ -62,10 +62,12 @@ def get_filtered_data():
                                range(1, len(dt[i]['sorted']) + 1)]
         dt[i]['k_maxpred'] = [e[1] for e in dt[i]['relpredict']].count(1.0)
 
+    returnStr = ""
     # Show perdictions for nearest neighbours
-    for i in dt: print(
-        f"{i:3} : {dt[i]['features']} - {dt[i]['label']} - KMP: {dt[i]['k_maxpred']} - {dt[i]['relpredict'][:firstrelpred]}",
+    for i in dt:
+        print(f"{i:3} : {dt[i]['features']} - {dt[i]['label']} - KMP: {dt[i]['k_maxpred']} - {dt[i]['relpredict'][:firstrelpred]}",
         file=of)
+
     print(printseparator, file=of)
 
     # Show nodes with different nearest neighbours
@@ -77,13 +79,23 @@ def get_filtered_data():
 
         print(
             f"KMP {d}: {[dt[i]['k_maxpred'] for i in range(len(dt))].count(d)} {[i for i in range(len(dt)) if dt[i]['k_maxpred']==d]}")
+        returnStr += f"KMP {d}: {[dt[i]['k_maxpred'] for i in range(len(dt))].count(d)} {[i for i in range(len(dt)) if dt[i]['k_maxpred']==d]}"
+        returnStr += "\n"
+
     # Close up
     of.close()
 
     df = pd.DataFrame.from_records(rawdata, columns=par.col_names)
 
+
     df[['sepal_length', 'sepal_width', 'petal_length', 'petal_width']] = df[['sepal_length', 'sepal_width', 'petal_length', 'petal_width']].apply(pd.to_numeric)
+
+    l3 = [x for x in columnfilter if x not in featurecols]
+    df.drop(df.columns[l3], axis=1, inplace=True)
+
+    print(df.count()[0])
+    returnStr += "Anzahl an Rows " + str(df.count()[0])
 
     df.to_csv("data_results.csv")
 
-    return df
+    return df, returnStr
