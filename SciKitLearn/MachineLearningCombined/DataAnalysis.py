@@ -19,6 +19,7 @@ columnflen = par.columnflen
 dnnrange = par.dnnrange
 rpdigits = par.rpdigits
 firstrelpred = par.firstrelpred
+komma_thingy = par.komma_thingy
 
 
 def get_filtered_data():
@@ -30,7 +31,10 @@ def get_filtered_data():
     print(printseparator, file=of)
 
     # Load Data
-    filedata = [line.split(inputseparator) for line in open(inputfilename).read().split("\n") if line != '']
+
+    # replace . and , for float conversion
+    # skip the first line because it contains headers
+    filedata = [str(line).replace(",", ".").split(inputseparator) for line in open(inputfilename).read().split("\n")[1:] if line != '']
 
     # Filter Data
     rawdata = [[filedata[j][i] for i in range(len(filedata[j])) if i in columnfilter or i == labelcolumn] for j in
