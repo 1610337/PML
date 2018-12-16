@@ -20,7 +20,6 @@ import sys
 
 
 def main():
-
     X_train, X_test, y_train, y_test = get_filtered_data()
 
     knn_value = knn(X_train, X_test, y_train, y_test)
@@ -64,7 +63,6 @@ def knn(X_train, X_test, y_train, y_test):
     # print(confusion_matrix(y_test, pred))
     # Build a text report showing the main classification metrics (like precision)
     #report = classification_report(y_test, pred, output_dict=True)
-
 
     ## See how the model performs on the test data.
     knn_score = knn.score(X_test, y_test)
@@ -133,10 +131,9 @@ def get_filtered_data():
     # split dataset into training and testing sets
     X = df_feat
 
-    print(df_feat.head())
     y = df['species']
     # random_state = seed for random values
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=101)
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3)
 
     return X_train, X_test, y_train, y_test
 
