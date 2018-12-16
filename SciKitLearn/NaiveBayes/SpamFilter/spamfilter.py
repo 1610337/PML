@@ -42,7 +42,7 @@ def main():
     training_data = spams + nospams
 
     # train model
-    classifier, vectorizer = train_model(training_data)
+    classifier, vectorizer = train_model(training_data, spams, nospams)
 
     for mail in input:
         print("Is this mail a spam: ", mail["Betreff"])
@@ -86,11 +86,11 @@ def final_operations(of, filename):
     shutil.copy(current_path+"/dir.mail.input/"+filename, current_path+"/dir.mail.output")
 
 
-def train_model(training_data):
+def train_model(training_data, spam_mails, ham_mails):
     vectorizer = CountVectorizer()
     counts = vectorizer.fit_transform([mail["text"] for mail in training_data])
 
-    classifier = MultinomialNB()
+    classifier = MultinomialNB() # class_prior=[1, 0]
     targets = [mail["class"] for mail in training_data]
 
     classifier.fit(counts, targets)
@@ -102,14 +102,29 @@ def train_model(training_data):
         coef_features_c1_c2.append(tuple([classifier.coef_[0][index], feat, c1, c2]))
         index += 1
     # print(sorted(coef_features_c1_c2))
-    df = pd.DataFrame(columns=["Word", "SpamCount", "HamCount"])
+    df = pd.DataFrame(columns=["Word", "HamCount", "SpamCount"])
     for ind, i in enumerate(sorted(coef_features_c1_c2)):
         df.loc[ind] = [i[1], i[2], i[3]]
-    #  print(df.head())
+
+    df['Ratio Ham 0 - Spam 1'] = df['HamCount']/(df['HamCount']+df['SpamCount'])
+
+    df['WordInHams'] = [word_in_mails(dfword, ham_mails) for dfword in df['Word']]
+    df['WordInSpams'] = [word_in_mails(dfword, spam_mails) for dfword in df['Word']]
+
+
+
+
+    print(df.head())
     df.to_csv(current_path + "/dir.mail.output/" + "wordcount.csv", index=False)
 
     return classifier, vectorizer
 
+def word_in_mails(word, mails):
+    count = 0
+    for mail in mails:
+        if str(word).lower() in str(mail["text"]).lower().split():
+            count = count +1
+    return count
 
 def bayes_spam_filter(classifier, vectorizer, mail):
 
