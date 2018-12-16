@@ -95,6 +95,7 @@ def get_filtered_data():
 
     print(df.count()[0])
     returnStr += "Anzahl an Rows " + str(df.count()[0])
+    returnStr += "\n"
 
     df.to_csv("data_results.csv")
 
