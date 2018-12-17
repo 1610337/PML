@@ -66,10 +66,11 @@ def main():
                     final_eveluation += "XSPAM: spam \n"
                     break
                 elif bayes_val < lower_treshold:
-                    #print("Bayes : Ham --> ", bayes_val)
+                    print("Bayes : Ham --> ", bayes_val, file=log)
                     final_eveluation += "XSPAM: ham \n"
                     break
                 else:
+                    print("Bayes : undetermined--> ", bayes_val,  file=log)
                     final_eveluation += "XSPAM: undetermined \n"
 
         final_eveluation += "XSPAM Proba: " + str(bayes_filter2(mail, model_df)) + "\n"
