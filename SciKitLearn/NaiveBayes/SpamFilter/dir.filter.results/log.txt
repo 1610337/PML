@@ -1,0 +1,7 @@
+Is this mail a spam:  WEBINAR: Get pay-per-use IT outcomes on-premises
+Bayes Value 0.9358982329982679
+Is this mail a spam:  [Professoren] Informatik-Kolloquium: das Internet of Things naht 	unaufhaltsam
+
+Bayes Value 0.2975623474462553
+Is this mail a spam:  middle
+Bayes Value 0.7758364658283781

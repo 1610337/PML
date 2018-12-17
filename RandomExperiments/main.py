@@ -36,3 +36,14 @@ val01 = [print(number, letter) for number in val01 for letter in val02]
 4 a
 4 b
 '''
+
+def retunss(a,b,c):
+    return a,b,c
+
+a = 1
+b = 2
+c = 3
+
+a, b, c = retunss(a, b, c)
+
+print(a, b, c)
