@@ -9,29 +9,20 @@ import pandas as pd
 
 import spamfilter_params as par
 
-
-words_to_remove = []
-top_words_to_account = 0
-dic = {}
-
-
-
-prio = ["blacklist", "whitelist", "bayes"]
-
 current_path = os.path.dirname(os.path.abspath(__file__))
 
 
 def main():
 
-    global blacklist, whitelist, critical_value, words_to_remove, top_words_to_account
-
-    blacklist = open(par.filename_blacklist).readlines()
-    whitelist = open(par.filename_whitelist).readlines()
+    global blacklist, whitelist, critical_value, words_to_remove, top_words_to_account, prio
+    blacklist = open(par.filename_blacklist).read().split("\n")
+    whitelist = open(par.filename_whitelist).read().split("\n")
     upper_treshold = par.upper_treshold
     lower_treshold = par.lower_treshold
     words_to_remove = list(par.char_replaces.keys())
     words_to_remove = words_to_remove + par.words_ignore
     top_words_to_account = par.top_words_to_account
+    prio = par.prio
 
     # set up paths to folders
     path_to_spams = current_path + "/dir.spam/"
@@ -198,6 +189,7 @@ def get_word_dict(emails):
 
 
 def blacklist_filter(addresse):
+    print(blacklist)
     if addresse in blacklist:
         return True
     return False
