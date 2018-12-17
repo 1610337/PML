@@ -15,6 +15,11 @@ words_to_remove = []
 top_words_to_account = 0
 dic = {}
 
+upper_treshold = 0.7
+lower_treshold = 0.2
+
+prio = ["blacklist", "whitelist", "bayes"]
+
 current_path = os.path.dirname(os.path.abspath(__file__))
 
 
@@ -47,9 +52,30 @@ def main():
     for mail in input:
 
         print("Is this mail a spam: ", mail["Betreff"])
+        print("Bayes Value", bayes_filter2(mail, model_df))
 
-        print("New Filter", bayes_filter2(mail, model_df))
+        for val in prio:
+            if val == "blacklist":
+                if blacklist_filter(mail["Von"]):
+                    print("Blacklist won")
+                    break
+            if val == "whitelist":
+                if whitelist_filter(mail["Von"]):
+                    print("Whitelist won")
+                    break
+            if val == "bayes":
+                bayes_val = bayes_filter2(mail, model_df)
+                if bayes_val > upper_treshold:
+                    print("Bayes : Spam --> ", bayes_val)
+                    break
+                elif bayes_val < lower_treshold:
+                    print("Bayes : Spam --> ", bayes_val)
+                    break
+                else:
+                    print("Bayes : Undefined -->", bayes_val)
 
+
+        '''
         # Outputfile
         of = open(current_path + "/dir.mail.output/" + mail["title"]+"_result", 'w')
         print('Spam analyse des files ' + mail["title"] + '\n', file=of)
@@ -64,7 +90,9 @@ def main():
             print('Da der Absender auf der Whitelist ist ist diese Mail NoSpam ', file=of)
             final_operations(of, mail["title"])
             continue
+        '''
 
+        ''' old implementation of bayes ... uncomment if needed
         solution, no_spam_pred, spam_pred = bayes_spam_filter(classifier, vectorizer, mail)
         if solution == "NoSpam":
             print("No --- bayes")
@@ -78,10 +106,9 @@ def main():
             print('NoSpam Wahrscheinlichkeit:', no_spam_pred,' Spam Wahrscheinlichkeit:' , spam_pred, file=of)
             final_operations(of, mail["title"])
             continue
-
         # TODO let the code learn according to that output
-
-        break
+        '''
+        #break
 
 
 def bayes_filter2(mail, model_df):
@@ -116,6 +143,7 @@ def get_word_df(mail):
         df.loc[ind] = [i[1], i[2]]
 
     return df
+
 
 def final_operations(of, filename):
     of.close()
