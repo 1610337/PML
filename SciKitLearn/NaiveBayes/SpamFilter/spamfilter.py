@@ -7,6 +7,8 @@ from sklearn.naive_bayes import MultinomialNB
 from sklearn.feature_extraction.text import CountVectorizer
 import pandas as pd
 
+import spamfilter_params as par
+
 # Please set input parameters in input_file.txt
 blacklist = []
 whitelist = []
@@ -29,7 +31,9 @@ def main():
     with open("input_file.txt", 'r') as text_file:
         [dic.update(dict) for dict in [{line.split(":")[0]:line.split(":")[1].strip().split(",")} for line in text_file.readlines()]]
     global blacklist, whitelist, critical_value, words_to_remove, top_words_to_account
-    blacklist = dic["blacklist"]
+
+    blacklist = open(par.filename_blacklist).readlines()
+    whitelist = open(par.filename_whitelist).readlines()
     whitelist = dic["whitelist"]
     critical_value = float(dic["critical_value"][0])
     words_to_remove = dic["words_to_remove"]
@@ -73,42 +77,6 @@ def main():
                     break
                 else:
                     print("Bayes : Undefined -->", bayes_val)
-
-
-        '''
-        # Outputfile
-        of = open(current_path + "/dir.mail.output/" + mail["title"]+"_result", 'w')
-        print('Spam analyse des files ' + mail["title"] + '\n', file=of)
-
-        if blacklist_filter(mail["Von"]):
-            print("Yes --- blacklist")
-            print('Da der Absender auf der Blacklist ist ist diese Mail Spam ', file=of)
-            final_operations(of, mail["title"])
-            continue
-        if whitelist_filter(mail["Von"]):
-            print("No --- whitelist")
-            print('Da der Absender auf der Whitelist ist ist diese Mail NoSpam ', file=of)
-            final_operations(of, mail["title"])
-            continue
-        '''
-
-        ''' old implementation of bayes ... uncomment if needed
-        solution, no_spam_pred, spam_pred = bayes_spam_filter(classifier, vectorizer, mail)
-        if solution == "NoSpam":
-            print("No --- bayes")
-            print('Nach dem Bayes-Verfahren ist diese Mail kein Spam \n', file=of)
-            print('NoSpam Wahrscheinlichkeit:', no_spam_pred,' Spam Wahrscheinlichkeit:' , spam_pred, file=of)
-            final_operations(of, mail["title"])
-            continue
-        if solution == "Spam":
-            print("Yes --- bayes")
-            print('Nach dem Bayes-Verfahren ist diese Mail Spam \n', file=of)
-            print('NoSpam Wahrscheinlichkeit:', no_spam_pred,' Spam Wahrscheinlichkeit:' , spam_pred, file=of)
-            final_operations(of, mail["title"])
-            continue
-        # TODO let the code learn according to that output
-        '''
-        #break
 
 
 def bayes_filter2(mail, model_df):
