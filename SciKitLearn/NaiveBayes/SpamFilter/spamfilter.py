@@ -85,6 +85,21 @@ def main():
 
 
 def bayes_filter2(mail, model_df):
+
+    df = get_word_df(mail)
+    # merge of the current mail with df with all mails on the "word" col
+    main_df = df.merge(model_df, on="Word")
+    # create relative ham/spam count cols TODO integrate the relative value maybe
+    main_df['SpamQuote'] = main_df['SpamCount'] / (main_df['SpamCount']+main_df['HamCount'])
+    # main_df['RelativeSpamVal'] = main_df['WordCount'] * main_df['SpamCount']
+    # main_df['RelativeHamVal'] = main_df['WordCount'] * main_df['HamCount']
+
+    final_val = sum(main_df['SpamQuote']) / len(main_df['SpamQuote'])
+
+    return final_val
+
+
+def get_word_df(mail):
     # get a datagrame with words in one col and the number of how often the word occured in the other col
     vectorizer = CountVectorizer()
     counts = vectorizer.fit_transform([mail["text"]])
@@ -100,23 +115,7 @@ def bayes_filter2(mail, model_df):
     for ind, i in enumerate(sorted(coef_features_c1_c2)):
         df.loc[ind] = [i[1], i[2]]
 
-    #print(df.head())
-    #print(model_df.head())
-
-    # merge the two df
-    main_df = df.merge(model_df, on="Word")
-    # create relative ham/spam count cols
-    main_df['SpamQuote'] = main_df['SpamCount'] / (main_df['SpamCount']+main_df['HamCount'])
-    main_df['RelativeSpamVal'] = main_df['WordCount'] * main_df['SpamCount']
-    main_df['RelativeHamVal'] = main_df['WordCount'] * main_df['HamCount']
-
-    #print(main_df.head())
-   # print(main_df['SpamQuote'])
-
-    final_val = sum(main_df['SpamQuote']) / len(main_df['SpamQuote'])
-
-    return final_val
-
+    return df
 
 def final_operations(of, filename):
     of.close()
