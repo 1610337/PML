@@ -35,6 +35,7 @@ def main():
     input = read_emails(path_to_inputs, None)
     training_data = spams + nospams
 
+    #final_operations(1,2)
     # train model
     classifier, vectorizer, model_df = train_model(training_data, spams, nospams)
 
@@ -43,25 +44,46 @@ def main():
         print("Is this mail a spam: ", mail["Betreff"])
         print("Bayes Value", bayes_filter2(mail, model_df))
 
+        final_eveluation = ""
         for val in prio:
             if val == "blacklist":
                 if blacklist_filter(mail["Von"]):
-                    print("Blacklist won")
+                    #print("Blacklist won")
+                    final_eveluation += "XSPAM: Blacklist \n"
                     break
             if val == "whitelist":
                 if whitelist_filter(mail["Von"]):
-                    print("Whitelist won")
+                    #print("Whitelist won")
+                    final_eveluation += "XSPAM: Whitelist \n"
                     break
             if val == "bayes":
                 bayes_val = bayes_filter2(mail, model_df)
                 if bayes_val > upper_treshold:
-                    print("Bayes : Spam --> ", bayes_val)
+                    #print("Bayes : Spam --> ", bayes_val)
+                    final_eveluation += "XSPAM: spam \n"
                     break
                 elif bayes_val < lower_treshold:
-                    print("Bayes : Spam --> ", bayes_val)
+                    #print("Bayes : Ham --> ", bayes_val)
+                    final_eveluation += "XSPAM: ham \n"
                     break
                 else:
-                    print("Bayes : Undefined -->", bayes_val)
+                    final_eveluation += "XSPAM: undetermined \n"
+
+        final_eveluation += "XSPAM Proba: " + str(bayes_filter2(mail, model_df)) + "\n"
+        final_eveluation += "*"*80 + "\n"
+
+        copy_and_append_head(final_eveluation, mail["title"], mail)
+
+
+def copy_and_append_head(evaluation, name, mail):
+
+    #  copy  mail into outputfolder
+    shutil.copy(current_path + "/dir.mail.input/" + name, current_path + "/dir.mail.output")
+
+    # We open the file in WRITE mode
+    src = open(current_path + "/dir.mail.output/" + name, "w")
+    src.writelines(evaluation+mail["title"]+mail["Von"]+mail["Betreff"]+mail["text"])
+    src.close()
 
 
 def bayes_filter2(mail, model_df):
@@ -99,8 +121,12 @@ def get_word_df(mail):
 
 
 def final_operations(of, filename):
-    of.close()
-    shutil.copy(current_path+"/dir.mail.input/"+filename, current_path+"/dir.mail.output")
+    #  delete folder
+    shutil.rmtree(current_path+"/dir.mail.output/")
+
+    #  create folder again
+    if not os.path.exists(current_path+"/dir.mail.output/"):
+        os.makedirs(current_path+"/dir.mail.output/")
 
 
 def train_model(training_data, spam_mails, ham_mails):
@@ -128,10 +154,6 @@ def train_model(training_data, spam_mails, ham_mails):
     df['WordInHams'] = [word_in_mails(dfword, ham_mails) for dfword in df['Word']]
     df['WordInSpams'] = [word_in_mails(dfword, spam_mails) for dfword in df['Word']]
 
-
-
-
-    print(df.head())
     df.to_csv(current_path + "/dir.mail.output/" + "wordcount.csv", index=False)
 
     return classifier, vectorizer, df
@@ -189,7 +211,6 @@ def get_word_dict(emails):
 
 
 def blacklist_filter(addresse):
-    print(blacklist)
     if addresse in blacklist:
         return True
     return False
