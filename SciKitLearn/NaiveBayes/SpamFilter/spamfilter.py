@@ -9,16 +9,12 @@ import pandas as pd
 
 import spamfilter_params as par
 
-# Please set input parameters in input_file.txt
-blacklist = []
-whitelist = []
-critical_value = 0.0
+
 words_to_remove = []
 top_words_to_account = 0
 dic = {}
 
-upper_treshold = 0.7
-lower_treshold = 0.2
+
 
 prio = ["blacklist", "whitelist", "bayes"]
 
@@ -27,17 +23,15 @@ current_path = os.path.dirname(os.path.abspath(__file__))
 
 def main():
 
-    # Read inputfile and fill variables
-    with open("input_file.txt", 'r') as text_file:
-        [dic.update(dict) for dict in [{line.split(":")[0]:line.split(":")[1].strip().split(",")} for line in text_file.readlines()]]
     global blacklist, whitelist, critical_value, words_to_remove, top_words_to_account
 
     blacklist = open(par.filename_blacklist).readlines()
     whitelist = open(par.filename_whitelist).readlines()
-    whitelist = dic["whitelist"]
-    critical_value = float(dic["critical_value"][0])
-    words_to_remove = dic["words_to_remove"]
-    top_words_to_account = dic["top_words_to_account"][0]
+    upper_treshold = par.upper_treshold
+    lower_treshold = par.lower_treshold
+    words_to_remove = list(par.char_replaces.keys())
+    words_to_remove = words_to_remove + par.words_ignore
+    top_words_to_account = par.top_words_to_account
 
     # set up paths to folders
     path_to_spams = current_path + "/dir.spam/"
