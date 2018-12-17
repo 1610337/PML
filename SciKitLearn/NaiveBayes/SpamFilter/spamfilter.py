@@ -35,14 +35,17 @@ def main():
     input = read_emails(path_to_inputs, None)
     training_data = spams + nospams
 
-    #final_operations(1,2)
+    final_operations()
+
     # train model
     classifier, vectorizer, model_df = train_model(training_data, spams, nospams)
 
+    log = open(current_path+"\\dir.filter.results\\"+'log.txt', 'w')
+
     for mail in input:
 
-        print("Is this mail a spam: ", mail["Betreff"])
-        print("Bayes Value", bayes_filter2(mail, model_df))
+        print("Is this mail a spam: ", mail["Betreff"], file=log)
+        print("Bayes Value", bayes_filter2(mail, model_df), file=log)
 
         final_eveluation = ""
         for val in prio:
@@ -73,6 +76,7 @@ def main():
         final_eveluation += "*"*80 + "\n"
 
         copy_and_append_head(final_eveluation, mail["title"], mail)
+    log.close()
 
 
 def copy_and_append_head(evaluation, name, mail):
@@ -84,6 +88,11 @@ def copy_and_append_head(evaluation, name, mail):
     src = open(current_path + "/dir.mail.output/" + name, "w")
     src.writelines(evaluation+mail["title"]+mail["Von"]+mail["Betreff"]+mail["text"])
     src.close()
+
+    # copy word count into results folder
+    shutil.copy(current_path + "\\dir.mail.output\\wordcount.csv", current_path + "/dir.filter.results/")
+    # copy params into results folder
+    shutil.copy(current_path + "\\spamfilter_params.py", current_path + "/dir.filter.results/")
 
 
 def bayes_filter2(mail, model_df):
@@ -120,7 +129,7 @@ def get_word_df(mail):
     return df
 
 
-def final_operations(of, filename):
+def final_operations():
     #  delete folder
     shutil.rmtree(current_path+"/dir.mail.output/")
 
