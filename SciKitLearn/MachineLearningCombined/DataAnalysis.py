@@ -23,6 +23,7 @@ komma_thingy = par.komma_thingy
 
 
 def get_filtered_data():
+    #linefilter = par.linefilter.append([35, 36, 53, 67, 69, 73])
     # Header in Outputfile
     of = open(par.outputfilename, 'w') # h to write inside
     print('Particular Data Analysis (with kNN) [1.2]\n', file=of)
@@ -39,6 +40,11 @@ def get_filtered_data():
     # Filter Data
     rawdata = [[filedata[j][i] for i in range(len(filedata[j])) if i in columnfilter or i == labelcolumn] for j in
                range(len(filedata)) if eval('j not in ' + linefilter)]
+
+    ##for cal in [35, 36, 53, 67, 69, 73]:
+        #del rawdata[cal]
+     #   rawdata.pop(cal)
+
     print('count of data records: ', len(rawdata), '\n', file=of)
 
     # Prepare Data
@@ -97,6 +103,8 @@ def get_filtered_data():
     returnStr += "Anzahl an Rows " + str(df.count()[0])
     returnStr += "\n"
 
+    df = df.drop([34, 35, 52, 66, 68, 72])
+    print(df.count()[0])
     df.to_csv("data_results.csv")
 
     return df, returnStr

@@ -142,10 +142,11 @@ def final_operations():
 def train_model(training_data, spam_mails, ham_mails):
     vectorizer = CountVectorizer()
     counts = vectorizer.fit_transform([mail["text"] for mail in training_data])
-
+    print(counts)
     classifier = MultinomialNB(alpha=1.0, class_prior=None, fit_prior=True)  # class_prior=[1, 0]
     targets = [mail["class"] for mail in training_data]
 
+    print(targets)
     classifier.fit(counts, targets)
 
     # write word count into output file
@@ -159,7 +160,11 @@ def train_model(training_data, spam_mails, ham_mails):
     for ind, i in enumerate(sorted(coef_features_c1_c2)):
         df.loc[ind] = [i[1], i[2], i[3]]
 
+    # TODO
+    # main_df['SpamQuote'] = main_df['SpamCount'] / (main_df['SpamCount']+main_df['HamCount'])
+    # makes more sense probably
     df['Ratio Ham 0 - Spam 1'] = df['HamCount']/(df['HamCount']+df['SpamCount'])
+
 
     df['WordInHams'] = [word_in_mails(dfword, ham_mails) for dfword in df['Word']]
     df['WordInSpams'] = [word_in_mails(dfword, spam_mails) for dfword in df['Word']]

@@ -135,13 +135,13 @@ def get_filtered_data():
     print(df.head())
     returnStr += str(df.head())
 
-    '''
+
     # create a new feature
     print(df.head())
-    df['newcol'] = df['sepal_length']*df['sepal_width']
-    df = df.drop(['sepal_width', 'sepal_length'], axis=1)
+    df['CalcFeature'] = df['petal_length']*df['petal_width']
+    df = df.drop(['petal_length', 'petal_width'], axis=1)
     print(df.head())
-    '''
+
     # get a dataframe without the species column
     df_feat = df.drop(columns=['species'])
 
